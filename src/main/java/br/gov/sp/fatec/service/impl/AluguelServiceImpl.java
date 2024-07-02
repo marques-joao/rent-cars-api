@@ -37,4 +37,5 @@ public class AluguelServiceImpl implements AluguelService {
 
     @Override
     public void deleteById(Long id) {}
+
 }
