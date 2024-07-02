@@ -1,7 +1,6 @@
 package br.gov.sp.fatec.service.impl;
 
 import br.gov.sp.fatec.domain.entity.Carro;
-import br.gov.sp.fatec.domain.enums.CarroStatus;
 import br.gov.sp.fatec.domain.mapper.CarroMapper;
 import br.gov.sp.fatec.domain.request.CarroRequest;
 import br.gov.sp.fatec.domain.request.CarroUpdateRequest;

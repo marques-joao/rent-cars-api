@@ -1,5 +1,7 @@
 package br.gov.sp.fatec.service.impl;
 
+import br.gov.sp.fatec.domain.entity.Carro;
+import br.gov.sp.fatec.domain.entity.Cliente;
 import br.gov.sp.fatec.domain.mapper.ClienteMapper;
 import br.gov.sp.fatec.domain.request.ClienteRequest;
 import br.gov.sp.fatec.domain.request.ClienteUpdateRequest;
@@ -7,6 +9,8 @@ import br.gov.sp.fatec.domain.response.ClienteResponse;
 import br.gov.sp.fatec.repository.ClienteRepository;
 import br.gov.sp.fatec.service.ClienteService;
 import java.util.List;
+
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,23 +23,39 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public ClienteResponse save(ClienteRequest clienteRequest) {
-        return null;
+        return clienteMapper.map(clienteRepository.save(clienteMapper.map(clienteRequest)));
     }
 
     @Override
     public ClienteResponse findById(Long id) {
-        return null;
+        Cliente cliente = clienteRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Cliente não encontrado."));
+
+        return clienteMapper.map(cliente);
     }
 
     @Override
     public List<ClienteResponse> findAll() {
-        return List.of();
+        List<Cliente> clientes = clienteRepository.findAll();
+
+        return clientes.stream().map(clienteMapper::map).toList();
     }
 
     @Override
-    public void updateById(Long id, ClienteUpdateRequest clienteUpdateRequest) {}
+    public void updateById(Long id, ClienteUpdateRequest clienteUpdateRequest) {
+        Cliente cliente = clienteRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Cliente não encontrado."));
+
+        cliente.setNome(clienteUpdateRequest.nome());
+        cliente.setCpf(clienteUpdateRequest.cpf());
+        cliente.setTelefone(clienteUpdateRequest.telefone());
+
+        clienteRepository.save(cliente);
+    }
 
     @Override
-    public void deleteById(Long id) {}
+    public void deleteById(Long id) {
+        clienteRepository.deleteById(id);
+    }
 
 }

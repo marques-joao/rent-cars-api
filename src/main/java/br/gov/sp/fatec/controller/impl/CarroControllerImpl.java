@@ -1,7 +1,6 @@
 package br.gov.sp.fatec.controller.impl;
 
 import br.gov.sp.fatec.controller.CarroController;
-import br.gov.sp.fatec.domain.enums.CarroStatus;
 import br.gov.sp.fatec.domain.request.CarroRequest;
 import br.gov.sp.fatec.domain.request.CarroUpdateRequest;
 import br.gov.sp.fatec.domain.response.CarroResponse;

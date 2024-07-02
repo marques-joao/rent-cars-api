@@ -9,7 +9,9 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = SPRING)
 public interface ClienteMapper {
+
     Cliente map(ClienteRequest source);
 
     ClienteResponse map(Cliente aluguel);
+
 }

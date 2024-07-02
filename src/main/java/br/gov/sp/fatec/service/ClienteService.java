@@ -6,6 +6,7 @@ import br.gov.sp.fatec.domain.response.ClienteResponse;
 import java.util.List;
 
 public interface ClienteService {
+
     ClienteResponse save(ClienteRequest clienteRequest);
 
     ClienteResponse findById(Long id);
@@ -15,4 +16,5 @@ public interface ClienteService {
     void updateById(Long id, ClienteUpdateRequest clienteUpdateRequest);
 
     void deleteById(Long id);
+
 }
